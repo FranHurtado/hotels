@@ -1,0 +1,24 @@
+2012/09/12 12:43:47 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "Usuarios".' in /Applications/MAMP/htdocs/CRM/YII/web/CWebApplication.php:287
+Stack trace:
+#0 /Applications/MAMP/htdocs/CRM/YII/web/CWebApplication.php(142): CWebApplication->runController('Usuarios')
+#1 /Applications/MAMP/htdocs/CRM/YII/base/CApplication.php(162): CWebApplication->processRequest()
+#2 /Applications/MAMP/htdocs/CRM/CRM/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/CRM/CRM/index.php/Usuarios/
+---
+2012/09/12 12:43:56 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "Usuarios".' in /Applications/MAMP/htdocs/CRM/YII/web/CWebApplication.php:287
+Stack trace:
+#0 /Applications/MAMP/htdocs/CRM/YII/web/CWebApplication.php(142): CWebApplication->runController('Usuarios')
+#1 /Applications/MAMP/htdocs/CRM/YII/base/CApplication.php(162): CWebApplication->processRequest()
+#2 /Applications/MAMP/htdocs/CRM/CRM/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/CRM/CRM/index.php/Usuarios
+---
+2012/09/12 12:44:02 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "Usuarios/Default".' in /Applications/MAMP/htdocs/CRM/YII/web/CWebApplication.php:287
+Stack trace:
+#0 /Applications/MAMP/htdocs/CRM/YII/web/CWebApplication.php(142): CWebApplication->runController('Usuarios/Defaul...')
+#1 /Applications/MAMP/htdocs/CRM/YII/base/CApplication.php(162): CWebApplication->processRequest()
+#2 /Applications/MAMP/htdocs/CRM/CRM/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/CRM/CRM/index.php/Usuarios/Default
+---
