@@ -72,7 +72,7 @@ body
 
 #mainmenu ul
 {
-	padding:6px 20px 5px 20px;
+	padding:9px 20px 5px 20px;
 	margin:0px;
 }
 
@@ -88,14 +88,32 @@ body
 	font-size:12px;
 	font-weight:bold;
 	text-decoration:none;
-	padding:5px 8px;
+	padding: 6px 15px 5px 15px;
 }
 
-#mainmenu ul li a:hover, #mainmenu ul li.active a
+#mainmenu ul li.active a, #mainmenu ul li.active a:hover
 {
-	color: #6399cd;
-	background-color:#EFF4FA;
+	font-size: 9pt;
+	color: #444;
+	background-color: #c4e1e8;
 	text-decoration:none;
+	border: 2px solid #666;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	-moz-box-shadow: inset 0px 0px 3px 2px rgba(30, 30, 30, .6);
+	-webkit-box-shadow: inset 0px 0px 3px 2px rgba(30, 30, 30, .6);
+	box-shadow: inset 0px 0px 3px 2px rgba(30, 30, 30, .6); 
+}
+
+#mainmenu ul li a:hover
+{
+	color: white;
+	background-color: #444;
+	text-decoration:none;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
 }
 
 div.flash-error, div.flash-notice, div.flash-success
