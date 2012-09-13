@@ -9,17 +9,17 @@ body
 
 #page
 {
-	margin-top: 5px;
+	margin-top: 0;
 	margin-bottom: 5px;
 	background: white;
-	border: 1px solid #C9E0ED;
 }
 
 #header
 {
+	background: #468898;
 	margin: 0;
 	padding: 0;
-	border-top: 3px solid #C9E0ED;
+	color: white;
 }
 
 #content
@@ -45,11 +45,29 @@ body
 {
 	padding: 10px 20px;
 	font-size: 200%;
+	float: left;
+}
+
+#notifications
+{
+	padding: 10px 20px;
+	font-size: 200%;
+	float: right;
 }
 
 #mainmenu
 {
-	background:white url(bg.gif) repeat-x left top;
+	background: #666;
+	border-top: 1px solid #ccc;
+	border-bottom: 1px solid #eee;
+	-webkit-box-shadow: 0px 0px 11px rgba(50, 50, 50, 0.5);
+	-moz-box-shadow: 0px 0px 11px rgba(50, 50, 50, 0.5);
+	box-shadow: 0px 0px 11px rgba(50, 50, 50, 0.5);
+}
+
+#mainmenu #searchdiv
+{
+	float: left;
 }
 
 #mainmenu ul
