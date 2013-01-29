@@ -7,8 +7,11 @@
 // CWebApplication properties can be configured here.
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
-	'name'=>'CRM Hoteles',
+	'name'=>'Oasis CRM Hoteles',
 	'theme'=>'default',
+	'sourceLanguage'=>'00',
+    'language'=>'es',
+    'charset'=>'utf-8',
 
 	// preloading 'log' component
 	'preload'=>array('log'),
@@ -17,10 +20,15 @@ return array(
 	'import'=>array(
 		'application.models.*',
 		'application.components.*',
+		'application.modules.user.models.*',
+		'application.modules.customer.models.*',
 	),
 
 	'modules'=>array(
-		'Usuarios',
+		'user',
+		'customer',
+		'mail',
+		'APPC',
 		'gii'=>array(
 			'class'=>'system.gii.GiiModule',
 			'password'=>'chuloc0',
@@ -43,19 +51,16 @@ return array(
 				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
 			),
 		),
-		'db'=>array(
-			'connectionString' => 'sqlite:'.dirname(__FILE__).'/../data/testdrive.db',
-		),
 		// uncomment the following to use a MySQL database
-		/*
+		
 		'db'=>array(
-			'connectionString' => 'mysql:host=localhost;dbname=testdrive',
+			'connectionString' => 'mysql:host=localhost;dbname=crm_ddbb',
 			'emulatePrepare' => true,
-			'username' => 'root',
-			'password' => '',
+			'username' => 'crm_user',
+			'password' => 'user00Z',
 			'charset' => 'utf8',
 		),
-		*/
+		
 		'errorHandler'=>array(
 			// use 'site/error' action to display errors
 			'errorAction'=>'site/error',
@@ -82,5 +87,6 @@ return array(
 	'params'=>array(
 		// this is used in contact page
 		'adminEmail'=>'webmaster@example.com',
+		'siteURL'=>'http://localhost:8888/CRM/HCRM/',
 	),
 );

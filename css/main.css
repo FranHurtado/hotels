@@ -4,14 +4,14 @@ body
 	padding: 0;
 	color: #555;
 	font: normal 10pt Arial,Helvetica,sans-serif;
-	background: #EFEFEF;
+	background: #dedede;
 }
 
 #page
 {
 	margin-top: 0;
 	margin-bottom: 5px;
-	background: white;
+	background: #dedede;
 }
 
 #header
@@ -24,7 +24,20 @@ body
 
 #content
 {
-    padding: 20px;
+    background-color: white; 
+    margin: 0 25px;
+    border: 2px solid #ccc;
+    border-top: none;
+    -webkit-border-bottom-right-radius: 10px;
+	-webkit-border-bottom-left-radius: 10px;
+	-moz-border-radius-bottomright: 10px;
+	-moz-border-radius-bottomleft: 10px;
+	border-bottom-right-radius: 10px;
+	border-bottom-left-radius: 10px;
+    padding: 20px 40px;
+    -moz-box-shadow:  0px 0px 15px 5px rgba(0, 0, 0, 0.2);
+    -webkit-box-shadow:  0px 0px 15px 5px rgba(0, 0, 0, 0.2);
+    box-shadow:  0px 0px 15px 5px rgba(0, 0, 0, 0.2);
 }
 
 #sidebar
@@ -38,13 +51,12 @@ body
 	margin: 10px 20px;
 	font-size: 0.8em;
 	text-align: center;
-	border-top: 1px solid #C9E0ED;
 }
 
 #logo
 {
 	padding: 10px 20px;
-	font-size: 200%;
+	font-size: 150%;
 	float: left;
 }
 
@@ -63,6 +75,7 @@ body
 	-webkit-box-shadow: 0px 0px 11px rgba(50, 50, 50, 0.5);
 	-moz-box-shadow: 0px 0px 11px rgba(50, 50, 50, 0.5);
 	box-shadow: 0px 0px 11px rgba(50, 50, 50, 0.5);
+	z-index: 99;
 }
 
 #mainmenu #searchdiv
@@ -70,25 +83,50 @@ body
 	float: left;
 }
 
+#mainmenu #search
+{
+	width: 200px;
+	background: white url("../images/view.png") no-repeat 3px;
+}
+
 #mainmenu ul
 {
-	padding:9px 20px 5px 20px;
+	padding:9px 20px 5px 10px;
 	margin:0px;
 }
 
 #mainmenu ul li
 {
+	background-color:transparent !important;
+	border: 0 !important;
+	padding:0!important;
 	display: inline;
 }
 
 #mainmenu ul li a
 {
 	color:#ffffff;
-	background-color:transparent;
+	background-color:#666666;
 	font-size:12px;
 	font-weight:bold;
 	text-decoration:none;
 	padding: 6px 15px 5px 15px;
+}
+
+#mainmenu ul li.last a
+{
+	color:#ffffff;
+	background-color:#666666;
+	font-size:12px;
+	font-weight:bold;
+	text-decoration:none;
+	padding: 6px 15px 5px 15px;
+	-webkit-border-bottom-right-radius: 5px !important;
+	-webkit-border-bottom-left-radius: 5px !important;
+	-moz-border-radius-bottomright: 5px !important;
+	-moz-border-radius-bottomleft: 5px !important;
+	border-bottom-right-radius: 5px !important;
+	border-bottom-left-radius: 5px !important;
 }
 
 #mainmenu ul li.active a, #mainmenu ul li.active a:hover
@@ -97,7 +135,7 @@ body
 	color: #444;
 	background-color: #c4e1e8;
 	text-decoration:none;
-	border: 2px solid #666;
+	border: 2px solid #555;
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
 	border-radius: 5px;
@@ -114,6 +152,22 @@ body
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
 	border-radius: 5px;
+}
+
+#mainmenu ul li.dir ul 
+{
+	background-color:#666666;
+	-webkit-border-bottom-right-radius: 7px !important;
+	-webkit-border-bottom-left-radius: 7px !important;
+	-moz-border-radius-bottomright: 7px !important;
+	-moz-border-radius-bottomleft: 7px !important;
+	border-bottom-right-radius: 7px !important;
+	border-bottom-left-radius: 7px !important;
+}
+
+#mainmenu ul li.dir ul li
+{
+	line-height: 1.6em;
 }
 
 div.flash-error, div.flash-notice, div.flash-success
@@ -191,31 +245,47 @@ div.search-form
 
 .portlet
 {
-
+	-webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    border: 2px solid #db8f2d;
+    margin: 0 0 15px 0;
 }
 
 .portlet-decoration
 {
-	padding: 3px 8px;
-	background: #B7D6E7;
-	border-left: 5px solid #6FACCF;
+	padding: 5px 10px;
+	background: #ebb052;
+	border-bottom: 2px solid #db8f2d;
+	-webkit-border-top-left-radius: 2px;
+	-webkit-border-top-right-radius: 2px;
+    -moz-border-top-left-radius: 2px;
+    -moz-border-top-right-radius: 2px;
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
 }
 
 .portlet-title
 {
-	font-size: 12px;
+	font-size: 10pt;
 	font-weight: bold;
 	padding: 0;
 	margin: 0;
-	color: #298dcd;
+	color: white;
 }
 
 .portlet-content
 {
 	font-size:0.9em;
-	margin: 0 0 15px 0;
+	margin: 0;
 	padding: 5px 8px;
-	background:#EFFDFF;
+	background:#CAE1E7;
+	-webkit-border-bottom-left-radius: 2px;
+	-webkit-border-bottom-right-radius: 2px;
+    -moz-border-bottom-left-radius: 2px;
+    -moz-border-bottom-right-radius: 2px;
+    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 2px;
 }
 
 .portlet-content ul
@@ -247,7 +317,7 @@ div.search-form
 .operations li a
 {
 	font: bold 12px Arial;
-	color: #0066A4;
+	color: #1C6246;
 	display: block;
 	padding: 2px 0 2px 8px;
 	line-height: 15px;
@@ -256,10 +326,102 @@ div.search-form
 
 .operations li a:visited
 {
-	color: #0066A4;
+	color: #1C6246;
 }
 
 .operations li a:hover
 {
-	background: #80CFFF;
+	background: #b6c6ca;
+}
+
+
+.dash-portlet-header {
+    margin: 0.3em 0.3em 0.9em 0.3em!important;
+}
+
+.filters td
+{
+	text-align: center;
+}
+
+td input
+{
+	margin: 0 auto;
+	padding: 2px 0;
+	width: 100% !important;
+	-webkit-border-radius: 3px;  
+    -moz-border-radius: 3px;  
+    border-radius: 3px; 
+}
+
+.header
+{
+	font-size: 14pt;
+	color: white;
+	padding: 5px 150px 5px 10px;
+	border: 2px solid #db8f2d;
+	-webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+    border-radius: 7px;
+    -moz-box-shadow: -2px 2px 5px #DDD;
+    -webkit-box-shadow: -2px 2px 5px #DDD;
+    box-shadow: -2px 2px 5px #DDD;
+	background: #ebb052;
+	margin: 0 0 15px 0;
+	display: inline-block;
+}
+
+.grid-view table.items th {
+    background: #cae1e7 !important;
+    border: 1px solid #cae1e7 !important;
+}
+
+.grid-view table.items th a {
+    color: #1c6246 !important;
+}
+
+.grid-view table.items td {
+    border: 1px solid #dedede !important;
+    padding: 0.5em !important;
+}
+
+.grid-view table.items tr.odd {
+    background: none repeat scroll 0 0 #efefef !important;
+}
+
+.grid-view table.items tr.even {
+    background: none repeat scroll 0 0 #fff !important;
+}
+
+.add
+{
+	color: #468898;
+	cursor: pointer;
+}
+
+.delete
+{
+	color: red;
+	padding-right: 10px;
+	cursor: pointer;
+	font-size: 90%;
+	font-weight: bold;
+}
+
+.jqueryError
+{
+	color: red;
+	margin: 10px 0;
+	padding: 10px;
+	border: 1px solid red;
+	background: white;
+}
+
+.jqueryOk
+{
+	color: green;
+	margin: 10px 0;
+	padding: 10px;
+	border: 1px solid green;
+	background: white;
 }

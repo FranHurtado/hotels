@@ -1,0 +1,1 @@
+var CKEDITOR_BASEPATH="/CRM/HCRM/assets/c0e3ee3d/";

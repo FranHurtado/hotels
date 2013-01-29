@@ -9,21 +9,22 @@ $this->breadcrumbs=array(
 );
 ?>
 
-<h1>Login</h1>
+<div class="form logo">
+	<img src="<?php echo Yii::app()->request->baseUrl; ?>/images/logo.jpg" />
+</div>
 
-<p>Please fill out the following form with your login credentials:</p>
-
-<div class="form">
+<div class="form loginform">
 <?php $form=$this->beginWidget('CActiveForm', array(
 	'id'=>'login-form',
 	'enableClientValidation'=>true,
 	'clientOptions'=>array(
 		'validateOnSubmit'=>true,
 	),
+	
 )); ?>
 
-	<p class="note">Fields with <span class="required">*</span> are required.</p>
-
+	<input type="hidden" name="returnURL" value="<?php echo Yii::app()->user->returnURL ?>" />
+	
 	<div class="row">
 		<?php echo $form->labelEx($model,'username'); ?>
 		<?php echo $form->textField($model,'username'); ?>
@@ -34,9 +35,6 @@ $this->breadcrumbs=array(
 		<?php echo $form->labelEx($model,'password'); ?>
 		<?php echo $form->passwordField($model,'password'); ?>
 		<?php echo $form->error($model,'password'); ?>
-		<p class="hint">
-			Hint: You may login with <kbd>demo</kbd>/<kbd>demo</kbd> or <kbd>admin</kbd>/<kbd>admin</kbd>.
-		</p>
 	</div>
 
 	<div class="row rememberMe">
@@ -45,9 +43,14 @@ $this->breadcrumbs=array(
 		<?php echo $form->error($model,'rememberMe'); ?>
 	</div>
 
-	<div class="row buttons">
-		<?php echo CHtml::submitButton('Login'); ?>
+	<div class="row buttons" style="margin-top: 15px;">
+		<?php echo CHtml::submitButton('Aceptar'); ?>
 	</div>
 
 <?php $this->endWidget(); ?>
 </div><!-- form -->
+
+
+<div class="form logos">
+	<img src="<?php echo Yii::app()->request->baseUrl; ?>/images/logos.jpg" />
+</div>

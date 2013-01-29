@@ -4,6 +4,8 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="language" content="en" />
+	
+	<?php Yii::app()->clientScript->registerCoreScript('jquery'); ?>
 
 	<!-- blueprint CSS framework -->
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/screen.css" media="screen, projection" />
@@ -24,39 +26,57 @@
 
 	<div id="header">
 		<div id="logo"><?php echo CHtml::encode(Yii::app()->name); ?></div>
-		<div id="notifications">Notifications</div>
+		
+		<?php if(!Yii::app()->user->isGuest): ?>
+			<div id="notifications">Notificaciones</div>
+		<?php endif; ?>
 		<div class="br"></div>
 	</div><!-- header -->
 
 	<div id="mainmenu">
-		<div id="searchdiv">
-			<input type="text" name="search" id="search" />
-		</div>
-		<?php $this->widget('zii.widgets.CMenu',array(
+		<?php if(!Yii::app()->user->isGuest): ?>
+			<div id="searchdiv">
+				<input type="text" name="search" id="search" />
+			</div>
+		<?php endif; ?>
+		
+		<?php $this->widget('ext.emenu.EMenu',array(
+			'themeCssFile' => '',
 			'items'=>array(
-				array('label'=>'Home', 'url'=>array('/site/index')),
-				array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),
-				array('label'=>'Contact', 'url'=>array('/site/contact')),
-				array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
+				array('label'=>'Inicio', 'url'=>array('/dash'), 'visible'=>!Yii::app()->user->isGuest),
+				array('label'=>'Clientes', 'url'=>array('/customer/customer/admin'), 'visible'=>!Yii::app()->user->isGuest,),
+				array('label'=>'Reservas', 'url'=>'', 'visible'=>!Yii::app()->user->isGuest,
+					'items'=>array(
+						array('label'=>'Clientes', 'url'=>array(''), 'visible'=>!Yii::app()->user->isGuest),
+						array('label'=>'Habitaciones', 'url'=>array(''), 'visible'=>!Yii::app()->user->isGuest),
+						array('label'=>'Temporadas', 'url'=>array(''), 'visible'=>!Yii::app()->user->isGuest),
+					),
+				),
+				array('label'=>'APPC', 'url'=>array('/APPC/control/admin'), 'visible'=>!Yii::app()->user->isGuest,
+					'items'=>array(
+						array('label'=>'Puntos criticos', 'url'=>array('/APPC/point/admin'), 'visible'=>!Yii::app()->user->isGuest),
+						array('label'=>'Trabajadores', 'url'=>array('/APPC/worker/admin'), 'visible'=>!Yii::app()->user->isGuest),
+					),
+				),
+				array('label'=>'Marketing', 'url'=>array('/mail/mail/admin'), 'visible'=>!Yii::app()->user->isGuest,
+					'items'=>array(
+						array('label'=>'Listas de envio', 'url'=>array('/mail/mailist/admin'), 'visible'=>!Yii::app()->user->isGuest),
+					),
+				),
+				array('label'=>'Informes', 'url'=>'', 'visible'=>!Yii::app()->user->isGuest),
+				array('label'=>'Facturas', 'url'=>'', 'visible'=>!Yii::app()->user->isGuest),
 				array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
 			),
 		)); ?>
 		<div class="br"></div>
 	</div><!-- mainmenu -->
-	<?php if(isset($this->breadcrumbs)):?>
-		<?php $this->widget('zii.widgets.CBreadcrumbs', array(
-			'links'=>$this->breadcrumbs,
-		)); ?><!-- breadcrumbs -->
-	<?php endif?>
 
 	<?php echo $content; ?>
 
 	<div class="clear"></div>
 
 	<div id="footer">
-		Copyright &copy; <?php echo date('Y'); ?> by My Company.<br/>
-		All Rights Reserved.<br/>
-		<?php echo Yii::powered(); ?>
+		<?php echo date('Y'); ?> Oasis CRM<br/>
 	</div><!-- footer -->
 
 </div><!-- page -->
