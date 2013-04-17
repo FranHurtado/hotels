@@ -4,6 +4,12 @@
 /* @var $form CActiveForm */
 ?>
 
+<?php
+	$criteria = new CDbCriteria();
+	$criteria->condition = "UserID = :userid";
+	$criteria->params = array(':userid' => Yii::app()->user->ID);
+?>
+
 <div class="form">
 
 <?php $form=$this->beginWidget('CActiveForm', array(
@@ -13,11 +19,12 @@
 
 	<div class="row">
 		<?php echo $form->hiddenField($model,'UserID'); ?>
+		<?php echo CHtml::hiddenField('Enviar','0'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'ListID'); ?>
-		<?php echo $form->dropDownList($model,'ListID', CHtml::listData(Mailist::model()->findAll(), 'ID', 'Name'), 
+		<?php echo $form->dropDownList($model,'ListID', CHtml::listData(Mailist::model()->findAll($criteria), 'ID', 'Name'), 
 											array('empty'=>'-- Selecciona una lista de envio --', 'style' => 'width: 50%;')); ?>
 		<?php echo $form->error($model,'ListID'); ?>
 	</div>
@@ -53,9 +60,17 @@
 	</div>
 
 	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Guardar' : 'Guardar'); ?>
+		<?php echo CHtml::submitButton($model->isNewRecord ? 'Guardar' : 'Guardar'); ?>&nbsp;
+		
+		<?php echo CHtml::submitButton($model->isNewRecord ? 'Guardar y enviar' : 'Guardar y enviar', array('id'=>'submitForm')); ?>
 	</div>
 
 <?php $this->endWidget(); ?>
 
 </div><!-- form -->
+
+<script>
+	$("#submitForm").click(function(){
+		$("#Enviar").val("1");
+	});
+</script>

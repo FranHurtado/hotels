@@ -39,4 +39,8 @@ $this->menu=array(
 	        'deleteConfirmation'=>'Si aceptas eliminaras este registro definitivamente.',
 	     ),
 	),
+	
+	'emptyText' => 'No hay registros. <a href="'.$this->createURL('create').'">Picha</a> para crear uno.',
+    'summaryText' => 'Mostrando del {start} al {end} de {count} registro(s).',
+    
 )); ?>

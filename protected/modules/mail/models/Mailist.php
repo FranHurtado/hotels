@@ -66,7 +66,7 @@ class Mailist extends CActiveRecord
 		return array(
 			'ID' => 'ID',
 			'UserID' => 'User',
-			'Name' => 'Nombre',
+			'Name' => 'Nombre de la lista',
 		);
 	}
 
@@ -84,6 +84,9 @@ class Mailist extends CActiveRecord
 		$criteria->compare('ID',$this->ID);
 		$criteria->compare('UserID',$this->UserID);
 		$criteria->compare('Name',$this->Name,true);
+		
+		$criteria->condition = "UserID = :userid";
+		$criteria->params = array(':userid' => Yii::app()->user->ID);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

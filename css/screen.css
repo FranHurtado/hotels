@@ -28,8 +28,9 @@ a img {border:none;}
 html {font-size:100.01%;}
 body {font-size:75%;color:#222;background:#fff;font-family:"Helvetica Neue", Arial, Helvetica, sans-serif;}
 h1, h2, h3, h4, h5, h6 {font-weight:normal;color:#111;}
-h1 {font-size:2em;line-height:1;margin-bottom:0.5em; color:#468898;}
+h1 {font-size:1.4em!important;line-height:1;margin-bottom:0.5em; color:#468898;}
 h2 {font-size:1.6em;margin-bottom:0.75em;}
+h2.extra {font-size:1.2em;margin-bottom:0.35em;}
 h3 {font-size:1.4em;line-height:1;margin-bottom:1em;}
 h4 {font-size:1.2em;line-height:1.25;margin-bottom:1.25em;}
 h5 {font-size:1em;font-weight:bold;margin-bottom:1.5em;}
@@ -80,14 +81,14 @@ caption {background:#eee;}
 
 /* grid.css */
 .container {width:100%;margin:0 auto;}
-.column, .span-1, .span-2, .span-3, .span-4, .span-6, .span-7, .span-8, .span-9, .span-10, .span-11, .span-12, .span-13, .span-14, .span-15, .span-16, .span-17, .span-18, .span-19, .span-20, .span-21, .span-22, .span-23, .span-24 {float:left;margin-right:10px;}
-.span-5 {float:right;}
+.column, .span-1, .span-2, .span-3, .span-4, .span-6, .span-7, .span-8, .span-9, .span-10, .span-11, .span-12, .span-13, .span-14, .span-15, .span-16, .span-17, .span-18, .span-5, .span-20, .span-21, .span-22, .span-23, .span-24 {float:left;margin-right:10px;}
+.span-19 {float:right;}
 .last {margin-right:0;}
 .span-1 {width:30px;}
 .span-2 {width:70px;}
 .span-3 {width:110px;}
 .span-4 {width:150px;}
-.span-5 {width:20%;}
+.span-5 {width:23%;}
 .span-6 {width:230px;}
 .span-7 {width:270px;}
 .span-8 {width:310px;}

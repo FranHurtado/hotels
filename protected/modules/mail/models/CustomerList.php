@@ -90,6 +90,9 @@ class CustomerList extends CActiveRecord
 		$criteria->compare('UserID',$this->UserID);
 		$criteria->compare('CustomerID',$this->CustomerID);
 		$criteria->compare('ListID',$this->ListID);
+		
+		$criteria->condition = "UserID = :userid";
+		$criteria->params = array(':userid' => Yii::app()->user->ID);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

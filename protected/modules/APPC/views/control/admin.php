@@ -37,8 +37,9 @@ $this->menu=array(
 		array(
             'name'=>'Frecuency',
             'value'=>'Control::model()->giveFrecuency($data->Frecuency)',
+            'filter'=>false,
             'headerHtmlOptions'=>array(
-                'style'=>'width:100px;text-align:left !important;',
+                'style'=>'width:10%;text-align:left !important;',
             ),
         ),
 		array(	
@@ -57,7 +58,7 @@ $this->menu=array(
 	        'deleteConfirmation'=>'Si aceptas eliminaras este registro definitivamente.',
 	     ),
 	),
-	'emptyText' => 'No hay registros.',
+	'emptyText' => 'No hay registros. <a href="'.$this->createURL('create').'">Picha</a> para crear uno.',
     'summaryText' => 'Mostrando del {start} al {end} de {count} registro(s).',
 )); ?>
 

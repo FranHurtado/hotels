@@ -24,6 +24,7 @@ body
 
 #content
 {
+	min-width: 870px;
     background-color: white; 
     margin: 0 25px;
     border: 2px solid #ccc;
@@ -34,7 +35,7 @@ body
 	-moz-border-radius-bottomleft: 10px;
 	border-bottom-right-radius: 10px;
 	border-bottom-left-radius: 10px;
-    padding: 20px 40px;
+    padding: 25px 40px;
     -moz-box-shadow:  0px 0px 15px 5px rgba(0, 0, 0, 0.2);
     -webkit-box-shadow:  0px 0px 15px 5px rgba(0, 0, 0, 0.2);
     box-shadow:  0px 0px 15px 5px rgba(0, 0, 0, 0.2);
@@ -42,7 +43,7 @@ body
 
 #sidebar
 {
-	padding: 20px 20px 20px 0;
+	padding: 0 20px 20px 0;
 }
 
 #footer
@@ -85,73 +86,106 @@ body
 
 #mainmenu #search
 {
-	width: 200px;
+	width: 130px;
+	padding-left: 25px;
 	background: white url("../images/view.png") no-repeat 3px;
 }
 
 #mainmenu ul
 {
-	padding:9px 20px 5px 10px;
+	padding: 7px 15px 5px 10px;
 	margin:0px;
+	min-width: 1000px;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+	#mainmenu ul
+	{
+		padding: 9px 20px 5px 10px;
+		margin:0px;
+	}
 }
 
 #mainmenu ul li
 {
 	background-color:transparent !important;
 	border: 0 !important;
-	padding:0!important;
+	padding:0 !important;
 	display: inline;
 }
 
 #mainmenu ul li a
 {
-	color:#ffffff;
-	background-color:#666666;
-	font-size:12px;
-	font-weight:bold;
+	font-size: 8pt;
+	font-weight: bold;
+	color: #fff;
+	background-color: #666;
 	text-decoration:none;
-	padding: 6px 15px 5px 15px;
+	border: 3px solid #555;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	-moz-box-shadow: 0px 0px 3px 2px rgba(30, 30, 30, .5);
+	-webkit-box-shadow: 0px 0px 3px 2px rgba(30, 30, 30, .5);
+	box-shadow: 0px 0px 3px 2px rgba(30, 30, 30, .5); 
+	padding: 3px 12px;
+	margin: 0 5px;
 }
 
 #mainmenu ul li.last a
 {
-	color:#ffffff;
-	background-color:#666666;
-	font-size:12px;
-	font-weight:bold;
+	font-size: 8pt;
+	color: #fff;
+	background-color: #550000;
 	text-decoration:none;
-	padding: 6px 15px 5px 15px;
-	-webkit-border-bottom-right-radius: 5px !important;
-	-webkit-border-bottom-left-radius: 5px !important;
-	-moz-border-radius-bottomright: 5px !important;
-	-moz-border-radius-bottomleft: 5px !important;
-	border-bottom-right-radius: 5px !important;
-	border-bottom-left-radius: 5px !important;
+	border: 3px solid #555;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	-moz-box-shadow: 0px 0px 3px 2px rgba(30, 30, 30, .5);
+	-webkit-box-shadow: 0px 0px 3px 2px rgba(30, 30, 30, .5);
+	box-shadow: 0px 0px 3px 2px rgba(30, 30, 30, .5); 
+	padding: 4px 12px;
+	margin: 0 5px 0 40px;
+}
+
+#mainmenu ul li.last a:hover
+{
+	margin: 0 5px 0 40px;
 }
 
 #mainmenu ul li.active a, #mainmenu ul li.active a:hover
 {
-	font-size: 9pt;
+	font-size: 8pt;
 	color: #444;
 	background-color: #c4e1e8;
 	text-decoration:none;
-	border: 2px solid #555;
+	border: 3px solid #555;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	-moz-box-shadow: inset 0px 0px 4px 2px rgba(30, 30, 30, .7);
+	-webkit-box-shadow: inset 0px 0px 4px 2px rgba(30, 30, 30, .7);
+	box-shadow: inset 0px 0px 4px 2px rgba(30, 30, 30, .7); 
+	padding: 5px 12px;
+	margin: 0 5px; 
+}
+
+#mainmenu ul li a:hover
+{
+	font-size: 8pt;
+	color: #444;
+	background-color: #c4e1e8;
+	text-decoration:none;
+	border: 3px solid #555;
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
 	border-radius: 5px;
 	-moz-box-shadow: inset 0px 0px 3px 2px rgba(30, 30, 30, .6);
 	-webkit-box-shadow: inset 0px 0px 3px 2px rgba(30, 30, 30, .6);
 	box-shadow: inset 0px 0px 3px 2px rgba(30, 30, 30, .6); 
-}
-
-#mainmenu ul li a:hover
-{
-	color: white;
-	background-color: #444;
-	text-decoration:none;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-	border-radius: 5px;
+	padding: 4px 12px;
+	margin: 0 5px;
 }
 
 #mainmenu ul li.dir ul 
@@ -267,8 +301,8 @@ div.search-form
 
 .portlet-title
 {
-	font-size: 10pt;
-	font-weight: bold;
+	font-size: 14pt;
+	font-weight: normal;
 	padding: 0;
 	margin: 0;
 	color: white;
@@ -311,12 +345,12 @@ div.search-form
 
 .operations li
 {
-	padding-bottom: 2px;
+	padding-bottom: 10px;
 }
 
 .operations li a
 {
-	font: bold 12px Arial;
+	font: bold 11pt Arial;
 	color: #1C6246;
 	display: block;
 	padding: 2px 0 2px 8px;
@@ -424,4 +458,204 @@ td input
 	padding: 10px;
 	border: 1px solid green;
 	background: white;
+}
+
+.dash-portlet
+{
+	min-height: 250px !important;
+	margin: 0.8em 1em 1.4em 0 !important;
+}
+
+.dash-portlet-header
+{
+	margin-bottom: 5px !important;
+	text-shadow: 1px 1px 1px rgba(130, 130, 130, 0.8) !important;
+}
+
+.dash-portlet-content
+{
+	font: 10pt Arial !important;
+	padding: 5px 15px !important;
+}
+
+#myPlanning
+{
+	min-width: 680px;
+	margin-top: 3%;
+}
+
+#myPlanning td
+{
+	min-width: 12px;
+	min-height: 8px;
+	padding: 3px 0;
+}
+
+#myPlanning tr.headerPlanning td
+{
+	font: 7.5pt Arial;
+	font-weight: bold;
+	text-align: center;
+}
+
+#myPlanning td.day
+{
+	text-align: center;
+	border: 1px solid #999;
+}
+
+#myPlanning td.holiday
+{
+	background: #ebebeb;
+	color: red;
+}
+
+#myPlanning td.roomName
+{
+	text-align: right;
+	padding-right: 10px;
+}
+
+#myPlanning td.roomDay
+{
+	text-align: center;
+	border: 1px solid #999;
+	cursor:pointer;
+	
+}
+
+#myPlanning td.roomDay:hover
+{
+	background: #d8d8d8;
+}
+
+#myPlanning td.roomDayBooked
+{
+	text-align: center;
+	border: 1px solid #999;
+	cursor:pointer;
+	background: red;
+}
+
+#myPlanning td.roomDayBooked.close
+{
+	background: #888;
+}
+
+#myPlanning #monthName
+{
+	font: 20pt Arial;
+	text-align: center;
+	margin: 10px 0;
+	padding: 0;
+}
+
+#myPlanning #monthName a
+{
+	font-size: 15pt;
+	color: #666;
+	text-decoration: none;
+	padding: 0 15px;
+}
+
+.contextMenu
+{
+	background: #333;
+	color: white;
+	border: 1px solid #999;
+	padding: 5px 15px;
+	display: none;
+	position: absolute;
+}
+
+.contextMenu p
+{
+	margin: 10px 0;
+	cursor: pointer;
+}
+
+.grid-view span.empty 
+{
+  font-size: 14pt !important;
+  margin: 25px 10px 15px 10px !important;
+}
+
+table
+{
+	border-collapse: collapse;
+}
+
+table td
+{
+	padding: 10px;
+}
+
+table .supertitle
+{
+	font-size: 16pt;
+	font-weight: bold;
+	text-align: left;
+}
+
+table .title
+{
+	width: 10%;
+	font-size: 11pt;
+	font-weight: bold;
+	text-align: left;
+}
+
+table .content
+{
+	font-size: 10pt;
+	font-weight: normal;
+	text-align: left;
+}
+
+table.borderer td
+{
+	border: 1px solid #333;
+	padding: 10px;
+}
+
+.deleteExtra{
+	color: red;
+	cursor: pointer;
+	font-weight: bold;
+	padding-right: 8px;
+	padding-left: 10px;
+}
+
+.deleteDiscount{
+	color: red;
+	cursor: pointer;
+	font-weight: bold;
+	padding-right: 8px;
+	padding-left: 10px;
+}
+
+.deleteCharge{
+	color: red;
+	cursor: pointer;
+	font-weight: bold;
+	padding-right: 8px;
+	padding-left: 10px;
+}
+
+
+/*
+ * Widgets */
+ 
+.grid-view .filters input, .grid-view .filters select {
+	width: 100% !important;
+	min-height: 25px !important;
+    padding: 4px 5px 4px 25px !important;
+    -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+    border: 2px solid #999999;
+    border-radius: 7px 7px 7px 7px;
+    box-shadow: 2px 2px 2px 0 #DDDDDD inset;
+    background: url("../images/view.png") no-repeat 5px center !important;
+    background-size: auto 75% !important;
 }

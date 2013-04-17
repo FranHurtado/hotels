@@ -26,19 +26,19 @@ $this->menu=array(
         array(
             'name'=>'DNI',
             'headerHtmlOptions'=>array(
-                'style'=>'width: 120px;text-align:center !important;',
+                'style'=>'width: 15%;text-align:center !important;',
             ),
             'htmlOptions'=>array(
-                'style'=>'width: 120px;text-align:center !important;',
+                'style'=>'width: 15%;text-align:center !important;',
             ),
         ),
         array(
             'name'=>'Birthdate',
             'headerHtmlOptions'=>array(
-                'style'=>'width: 120px;text-align:center !important;',
+                'style'=>'width: 15%;text-align:center !important;',
             ),
             'htmlOptions'=>array(
-                'style'=>'width: 120px;text-align:center !important;',
+                'style'=>'width: 15%;text-align:center !important;',
             ),
         ),
 		array(	
@@ -57,6 +57,6 @@ $this->menu=array(
 	        'deleteConfirmation'=>'Si aceptas eliminaras este registro definitivamente.',
 	     ),
 	),
-	'emptyText' => 'No hay registros.',
+	'emptyText' => 'No hay registros. <a href="'.$this->createURL('create').'">Picha</a> para crear uno.',
     'summaryText' => 'Mostrando del {start} al {end} de {count} registro(s).',
 )); ?>

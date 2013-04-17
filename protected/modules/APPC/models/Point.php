@@ -61,6 +61,7 @@ class Point extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'user' => array(self::BELONGS_TO, 'User', 'UserID'),
+			'control' => array(self::HAS_MANY, 'Control', 'PointID'),
 		);
 	}
 
@@ -96,9 +97,40 @@ class Point extends CActiveRecord
 		$criteria->compare('Description',$this->Description,true);
 		$criteria->compare('Goal',$this->Goal,true);
 		$criteria->compare('Actions',$this->Actions,true);
+		
+		$criteria->condition = "UserID = :userid";
+		$criteria->params = array(':userid' => Yii::app()->user->ID);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
+	}
+	
+	
+	public function Top($num)
+	{
+		$criteria = new CDbCriteria();
+		$criteria->condition = "UserID = :userid";
+		$criteria->params = array(':userid' => Yii::app()->user->ID);
+		$criteria->limit = $num;
+		
+		$model = Control::model()->findAll($criteria);
+		
+		$result = "";
+		
+		$result.= "<table cellpadding='5' cellspacing='0' border='0' style='border-collapse: collapse;'>";
+		
+		$result.= "<tr><td><b>Punto critico</b></td><td><b>Control</b></td></tr>";
+				
+		foreach ($model as $customer):
+			$result.= "<tr>";
+			$result.= "<td><a href='".Yii::app()->createURL('/APPC/point/update/', array('id'=>$customer->ID))."'>" . Functions::stringCut($customer->point->Name, 25) . "</a></td>";
+			$result.= "<td><a href='".Yii::app()->createURL('/APPC/point/update/', array('id'=>$customer->ID))."'>" . Functions::stringCut($customer->Name, 25) . "</a></td>";
+			$result.= "</tr>";
+		endforeach;
+		
+		$result.= "</table>";
+		
+		return $result;
 	}
 }

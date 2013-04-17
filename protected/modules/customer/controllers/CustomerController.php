@@ -31,13 +31,13 @@ class CustomerController extends Controller
             
         return array(
         	array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update','delete','admin'),
+				'actions'=>array('create','update','delete','admin','print'),
 				'users'=>array('@'),
                 'expression'=>$User,
 			),
             
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update','delete','admin'),
+				'actions'=>array('create','update','delete','admin','print'),
 				'users'=>array('@'),
                 'expression'=>$Admin,
 			),
@@ -72,8 +72,32 @@ class CustomerController extends Controller
 		if(isset($_POST['Customer']))
 		{
 			$model->attributes=$_POST['Customer'];
-			if($model->save())
+			if($model->save()):
+				// Comprobamos si existe la lista de envio de todos los clientes
+				if(count(Mailist::model()->findByAttributes(array('Name'=>'Todos los clientes','UserID'=>Yii::app()->user->ID)))):
+					// Si existe la lista añadimos el nuevo cliente
+					$ListID = Mailist::model()->findByAttributes(array('Name'=>'Todos los clientes'))->ID;
+					$modelCustomerList = new CustomerList;
+					$modelCustomerList->UserID = Yii::app()->user->ID;
+					$modelCustomerList->ListID = $ListID;
+					$modelCustomerList->CustomerID = $model->ID;
+					$modelCustomerList->save();
+				else:
+					// Si no existe la lista la creamos y añadimos el cliente nuevo
+					$modelMailist = new Mailist;
+					$modelMailist->Name = "Todos los clientes";
+					$modelMailist->UserID = Yii::app()->user->ID;
+					if($modelMailist->save()):
+						$modelCustomerList = new CustomerList;
+						$modelCustomerList->UserID = Yii::app()->user->ID;
+						$modelCustomerList->ListID = $modelMailist->ID;
+						$modelCustomerList->CustomerID = $model->ID;
+						$modelCustomerList->save();
+					endif;
+				endif;
+					
 				$this->redirect(array('admin'));
+			endif;
 		}
 
 		$this->render('create',array(
@@ -144,6 +168,40 @@ class CustomerController extends Controller
 			'model'=>$model,
 		));
 	}
+	
+	/**
+	 * Print all customer in PDF
+	 */
+	public function actionPrint()
+	{
+		$criteria = new CDbCriteria();
+		$criteria->condition = "UserID = :userid";
+		$criteria->params = array(':userid' => Yii::app()->user->ID);
+		$criteria->order = 'FullName';
+		$model = Customer::model()->findAll($criteria);
+		
+		// Print customers
+		set_time_limit(600);
+    		
+        # mPDF
+        $pdf = Yii::app()->ePdf->mpdf('', 'A4', '','','','','','','','','P');
+
+        $pdf->writeHTMLfooter=false;
+        $pdf->writeHTMLheader=false;
+        $pdf->DeflMargin=15;
+        $pdf->DefrMargin=15;
+        $pdf->tMargin=15;
+        $pdf->bMargin=15;
+
+        $pdf->w=297;   //manually set width
+        $pdf->h=209.8; //manually set height
+        
+        $pdf->WriteHTML($this->renderPartial('_print', array('model'=>$model), true));
+        
+        # Outputs ready PDF
+	    $pdf->Output('Factura_'.date("d/m/Y").'.pdf','D');
+	}
+	
 
 	/**
 	 * Returns the data model based on the primary key given in the GET variable.

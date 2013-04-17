@@ -11,7 +11,7 @@ class DashController extends UIDashboardController
     public function init()
     {
         parent::init();
-
+       
         // Create new field in your users table for store dashboard preference
         // Set table name, user ID field name, user preference field name
         $this->setTableParams('dashboard_page', 'user_id', 'title');
@@ -19,12 +19,12 @@ class DashController extends UIDashboardController
         // set array of portlets
         $this->setPortlets(
                 array(
-                    array('id' => 1, 'title' => 'Clientes', 'content' => 'Contenido...<br /><br /><br /><br /><br /><br />'),
-                    array('id' => 2, 'title' => 'Reservas', 'content' => 'Contenido...<br /><br /><br /><br /><br /><br />'),
-                    array('id' => 3, 'title' => 'Puntos cr&iacute;ticos', 'content' => 'Contenido...<br /><br /><br /><br /><br /><br />'),
-                    array('id' => 4, 'title' => 'Marketing', 'content' => 'Contenido...<br /><br /><br /><br /><br /><br />'),
-                    array('id' => 5, 'title' => 'Informes', 'content' => 'Contenido...<br /><br /><br /><br /><br /><br />'),
-                    array('id' => 6, 'title' => 'Facturas', 'content' => 'Contenido...<br /><br /><br /><br /><br /><br />'),
+                    array('id' => 1, 'title' => 'Ultimos clientes', 'content' => Customer::model()->Top(4)),
+                    array('id' => 2, 'title' => 'Ultimas reservas', 'content' => Book::model()->Top(4)),
+                    array('id' => 3, 'title' => 'Puntos cr&iacute;ticos', 'content' => Point::model()->Top(4)),
+                    array('id' => 4, 'title' => 'Ultimos boletines', 'content' => Mail::model()->Top(4)),
+                    array('id' => 5, 'title' => 'Informes', 'content' => Functions::lastReports()),
+                    array('id' => 6, 'title' => 'Ultimas facturas', 'content' => Invoice::model()->Top(4)),
                     //array('id' => 6, 'title' => 'Reference', 'content' => $this->renderPartial('viewName', null, true)),
                 )
         );
@@ -46,7 +46,7 @@ class DashController extends UIDashboardController
         $this->setAutosave(true);
 
         // uncomment the following to disable dashboard header
-        //$this->setShowHeaders(false);
+        $this->setShowHeaders(false);
 
         // uncomment the following to enable context menu and add needed items
         /*

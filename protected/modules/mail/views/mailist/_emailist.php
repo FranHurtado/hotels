@@ -8,7 +8,7 @@
 	$customer = Customer::model()->findByPK($email->CustomerID);
 ?>
 	
-	<li><span class='delete' id='<?php echo $email->ID; ?>'>X</span><?php echo $customer->Email; ?></li>
+	<li><span class='delete' id='<?php echo $email->ID; ?>'>X</span><?php echo $customer->Email; ?> (<?php echo $customer->FullName; ?>)</li>
 
 <?php	
 	endforeach; 

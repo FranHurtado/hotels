@@ -4,6 +4,12 @@
 /* @var $form CActiveForm */
 ?>
 
+<?php
+	$criteria = new CDbCriteria();
+	$criteria->condition = "UserID = :userid";
+	$criteria->params = array(':userid' => Yii::app()->user->ID);
+?>
+
 <div class="form">
 
 <?php $form=$this->beginWidget('CActiveForm', array(
@@ -15,14 +21,14 @@
 
 	<div class="row" style="float: left;width:31%;">
 		<?php echo $form->labelEx($model,'WorkerID'); ?>
-		<?php echo $form->dropDownList($model,'WorkerID', CHtml::listData(Worker::model()->findAll(), 'ID', 'Fullname'), 
-											array('empty'=>'-- Selecciona un operario --', 'style' => 'width: 100%;')); ?>
+		<?php echo $form->dropDownList($model,'WorkerID', CHtml::listData(Worker::model()->findAll($criteria), 'ID', 'Fullname'), 
+											array('empty'=>'-- Selecciona un trabajador --', 'style' => 'width: 100%;')); ?>
 		<?php echo $form->error($model,'WorkerID'); ?>
 	</div>
 
 	<div class="row" style="float: left;width:60%;margin-left: 8%;">
 		<?php echo $form->labelEx($model,'PointID'); ?>
-		<?php echo $form->dropDownList($model,'PointID', CHtml::listData(Point::model()->findAll(), 'ID', 'Name'), 
+		<?php echo $form->dropDownList($model,'PointID', CHtml::listData(Point::model()->findAll($criteria), 'ID', 'Name'), 
 											array('empty'=>'-- Selecciona el punto critico --', 'style' => 'width: 100%;')); ?>
 		<?php echo $form->error($model,'PointID'); ?>
 	</div>
@@ -51,7 +57,7 @@
               // additional javascript options for the date picker plugin
               'options'=>array(
                 'changeYear'=>true,
-                'yearRange'=>'1990',
+                'yearRange'=>'2000:2050',
                 'language'=>'es',
                 'dateFormat'=>'yy-mm-dd',
                 'monthNames' => array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"),
@@ -79,7 +85,7 @@
               // additional javascript options for the date picker plugin
               'options'=>array(
                 'changeYear'=>true,
-                'yearRange'=>'1990',
+                'yearRange'=>'2000:2050',
                 'language'=>'es',
                 'dateFormat'=>'yy-mm-dd',
                 'monthNames' => array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"),

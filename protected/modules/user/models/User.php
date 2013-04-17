@@ -47,7 +47,7 @@ class User extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name, email, username, password', 'required'),
+			array('name, email, username, password, dni, address', 'required'),
 			array('active, camaras, freidoras, cebos, trampas', 'numerical', 'integerOnly'=>true),
 			array('name, password', 'length', 'max'=>50),
 			array('email, username, address', 'length', 'max'=>100),
@@ -106,6 +106,7 @@ class User extends CActiveRecord
 			'freidoras' => 'Freidoras',
 			'cebos' => 'Cebos',
 			'trampas' => 'Trampas',
+			'DNI' => 'DNI',
 		);
 	}
 
@@ -135,6 +136,7 @@ class User extends CActiveRecord
 		$criteria->compare('freidoras',$this->freidoras);
 		$criteria->compare('cebos',$this->cebos);
 		$criteria->compare('trampas',$this->trampas);
+		$criteria->compare('DNI',$this->DNI);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

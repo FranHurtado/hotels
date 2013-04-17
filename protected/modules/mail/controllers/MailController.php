@@ -79,6 +79,12 @@ class MailController extends Controller
 			$model->UserID = Yii::app()->user->ID;
 			$model->Date = date("Y-m-d");
 			if($model->save())
+				// Si pulsas Guardar y enviar lo envia
+				if($_POST["Enviar"] == 1):
+					$this->actionSend($model->ID);
+					echo "<script>alert('El boletin se ha enviado correctamente.')</script>";
+					echo "<script>window.location.href = '".$this->createURL('admin')."'</script>";
+				endif;
 				$this->redirect(array('admin'));
 		}
 
@@ -86,6 +92,7 @@ class MailController extends Controller
 			'model'=>$model,
 		));
 	}
+	
 
 	/**
 	 * Updates a particular model.
@@ -107,6 +114,12 @@ class MailController extends Controller
 		{
 			$model->attributes=$_POST['Mail'];
 			if($model->save())
+				// Si pulsas Guardar y enviar lo envia
+				if($_POST["Enviar"] == 1):
+					$this->actionSend($model->ID);
+					echo "<script>alert('El boletin se ha enviado correctamente.')</script>";
+					echo "<script>window.location.href = '".$this->createURL('admin')."'</script>";
+				endif;
 				$this->redirect(array('admin'));
 		}
 
@@ -187,8 +200,11 @@ class MailController extends Controller
 		$modelList = CustomerList::model()->findAllByAttributes(array("ListID"=>$model->ListID));
 		
 		foreach($modelList as $receiver) :
-			echo $receiver->customer->Email;
+			//echo $receiver->customer->Email;
 			Functions::sendMail("noreply@turalbacrm.com",$receiver->customer->Email,$model->Name,$model->Text);
 		endforeach;
+		
+		$model->LastSent = date("Y-m-d");
+		$model->save();
 	}
 }

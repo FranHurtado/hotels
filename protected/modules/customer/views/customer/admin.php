@@ -8,10 +8,13 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'Crear nuevo cliente', 'url'=>array('create')),
-	array('label'=>'Listado de clientes en PDF', 'url'=>array('admin')),
-	array('label'=>'Enviar boletin a mis clientes', 'url'=>array('admin')),
+	array('label'=>'Crear cliente', 'url'=>array('create')),
+	array('label'=>'Crear boletin', 'url'=>array('/mail/mail/create')),
+	array('label'=>'Listado clientes PDF', 'url'=>array('print')),
 );
+
+$this->help='Pulsa Crear Cliente para a&ntilde;adir un cliente al listado.<br /><br />Tambi&eacute;n podr&aacute;s enviar un 
+				bolet&iacute;n o exportar un listado de los clientes en PDF.';
 ?>
 
 <h1 class="header">Listado de clientes</h1>
@@ -23,32 +26,45 @@ $this->menu=array(
 	'columns'=>array(
 		array(
             'name'=> 'DNI',
+            'filter'=> false,
             'headerHtmlOptions'=>array(
-                'style'=>'width:100px;text-align:left !important;',
+                'style'=>'width:10%;text-align:left !important;',
             ),
             'htmlOptions'=>array(
-                'style'=>'width:100px;text-align:left;',
+                'style'=>'width:10%;text-align:left;',
             ),
         ),
 		array(
             'name'=> 'FullName',
+            'filter'=> CHtml::activeTextField($model, 'FullName', 
+                 			array('placeholder'=>'Escribe el valor a buscar...')),
             'headerHtmlOptions'=>array(
-                'style'=>'width:150px;text-align:left !important;',
+                'style'=>'width:40%;text-align:left !important;',
             ),
             'htmlOptions'=>array(
-                'style'=>'width:150px;text-align:left;',
+                'style'=>'width:40%;text-align:left;',
             ),
         ),
 		array(
             'name'=> 'Phone',
+            'filter'=> false,
             'headerHtmlOptions'=>array(
-                'style'=>'width:50px;text-align:left !important;',
+                'style'=>'width:10%;text-align:left !important;',
             ),
             'htmlOptions'=>array(
-                'style'=>'width:50px;text-align:left;',
+                'style'=>'width:10%;text-align:left;',
             ),
         ),
-		'Email',
+		array(
+            'name'=> 'Email',
+            'filter'=> false,
+            'headerHtmlOptions'=>array(
+                'style'=>'text-align:left !important;',
+            ),
+            'htmlOptions'=>array(
+                'style'=>'text-align:left;',
+            ),
+        ),
 		array(	
 	        'class'=>'CButtonColumn',
 	        'template'=>'{update} {delete}',
@@ -65,6 +81,6 @@ $this->menu=array(
 	        'deleteConfirmation'=>'Si aceptas eliminaras este registro definitivamente.',
 	     ),
 	),
-	'emptyText' => 'No hay registros.',
+	'emptyText' => 'No hay registros. <a href="'.$this->createURL('create').'">Pincha</a> para crear uno.',
     'summaryText' => 'Mostrando del {start} al {end} de {count} registro(s).',
 )); ?>

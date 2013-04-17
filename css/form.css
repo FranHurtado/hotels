@@ -208,3 +208,13 @@ div.wide.form .buttons, div.wide.form .hint, div.wide.form .errorMessage
 	clear: left;
 	padding-left: 110px;
 }
+
+DIV#content DIV.compactRadioGroup {
+    padding-top: 0.5em;
+    padding-left: 1em;
+}
+
+DIV#content .compactRadioGroup LABEL,
+DIV#content .compactRadioGroup INPUT {
+    display: inline;
+}

@@ -9,8 +9,12 @@ $this->breadcrumbs=array(
 
 $this->menu=array(
 	array('label'=>'Crear Boletin', 'url'=>array('create')),
-	array('label'=>'Ver Listas de envio', 'url'=>array('mailist/admin')),
+	array('label'=>'Crear Lista de envio', 'url'=>array('mailist/create')),
+	array('label'=>'Listas de envio', 'url'=>array('mailist/admin')),
 );
+
+$this->help='Para enviar un bolet&iacute;n, primero crea una lista de envio con los clientes a los que lo quieres enviar.<br /><br />
+				Posteriormente puedes crear el bolet&iacute;n y enviarlo.';
 
 ?>
 
@@ -23,31 +27,46 @@ $this->menu=array(
 	'columns'=>array(
 		array(
             'name'=>'Name',
+            'filter'=> CHtml::activeTextField($model, 'Name', 
+                 			array('placeholder'=>'Escribe el valor a buscar...')),
             'headerHtmlOptions'=>array(
-                'style'=>'width:250px;text-align:left !important;',
+                'style'=>'width:30%;text-align:left !important;',
             ),
             'htmlOptions'=>array(
-                'style'=>'width:250px;text-align:left;',
+                'style'=>'width:30%;text-align:left;',
             ),
         ),
 		array(
             'name'=>'ListID',
+            'filter'=> false,
             'value'=>'$data->list->Name',
             'headerHtmlOptions'=>array(
-                'style'=>'width:150px;text-align:left !important;',
+                'style'=>'width:25%;text-align:left !important;',
             ),
             'htmlOptions'=>array(
-                'style'=>'width:150px;text-align:left;',
+                'style'=>'width:25%;text-align:left;',
             ),
         ),
 		array(
             'name'=>'Date',
+            'filter'=> false,
             'value'=>'date("d-m-Y", strtotime($data->Date))',
             'headerHtmlOptions'=>array(
-                'style'=>'width:100px;text-align:left !important;',
+                'style'=>'width:15%;text-align:left !important;',
             ),
             'htmlOptions'=>array(
-                'style'=>'width:100px;text-align:left;',
+                'style'=>'width:15%;text-align:left;',
+            ),
+        ),
+        array(
+            'name'=>'LastSent',
+            'filter'=> false,
+            'value'=>'$data->LastSent != NULL ? date("d-m-Y", strtotime($data->LastSent)) : "No enviado"',
+            'headerHtmlOptions'=>array(
+                'style'=>'width:20%;text-align:left !important;',
+            ),
+            'htmlOptions'=>array(
+                'style'=>'width:20%;text-align:left;',
             ),
         ),
 		array(	
@@ -80,6 +99,10 @@ $this->menu=array(
 	        'deleteConfirmation'=>'Si aceptas eliminaras este registro definitivamente.',
 	     ),
 	),
+	
+	'emptyText' => 'No hay registros. <a href="'.$this->createURL('create').'">Pincha</a> para crear uno.',
+    'summaryText' => 'Mostrando del {start} al {end} de {count} registro(s).',
+    
 )); ?>
 
 

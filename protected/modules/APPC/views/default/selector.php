@@ -1,4 +1,4 @@
-<h1>Generar informe de APPC</h1>
+<h1>Seleccione las fechas para generar informe de APPC</h1>
 <div class="form" style="margin: 0 auto;">
 	<form method="post" name="form-selector" action="<?php echo Yii::app()->createUrl("APPC/default/informe"); ?>">
 		<div style="float:left;">
@@ -51,6 +51,8 @@
 	        ?>
 		</div>
 		
+		<div style="clear:both;"></div>
+		
 		<div class="row buttons" style="float:left;margin-left:50px;">
 			<?php echo CHtml::submitButton('Generar'); ?>
 		</div>
@@ -58,5 +60,3 @@
 		<div style="clear:both;"></div>
 	</form>
 </div>
-
-<a href="<?php echo Yii::app()->createURL("APPC"); ?>" class="backButtonA">Volver</a>

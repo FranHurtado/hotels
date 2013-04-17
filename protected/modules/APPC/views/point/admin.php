@@ -8,10 +8,15 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'Crear Control', 'url'=>array('control/create')),
-	array('label'=>'Crear Trabajador', 'url'=>array('worker/create')),
-	array('label'=>'Crear Punto Critico', 'url'=>array('create')),
+	array('label'=>'Nuevo Punto Critico', 'url'=>array('create')),
+	array('label'=>'Nuevo Control', 'url'=>array('control/create')),
+	array('label'=>'Nuevo Trabajador', 'url'=>array('worker/create')),
+	array('label'=>'Listado Controles', 'url'=>array('control/admin')),
+	array('label'=>'Listado Trabajadores', 'url'=>array('worker/admin')),
 );
+
+$this->help='La aplicaci&oacute;n genera un informe de APPC autom&aacute;tico con los puntos cr&iacute;ticos recomendados. 
+				Si usted lo desea puede a&ntilde;adir alguno m&aacute;s personalizado a dicha lista.';
 
 ?>
 
@@ -40,6 +45,6 @@ $this->menu=array(
 	        'deleteConfirmation'=>'Si aceptas eliminaras este registro definitivamente.',
 	     ),
 	),
-	'emptyText' => 'No hay registros.',
+	'emptyText' => 'No hay registros. <a href="'.$this->createURL('create').'">Picha</a> para crear uno.',
     'summaryText' => 'Mostrando del {start} al {end} de {count} registro(s).',
 )); ?>

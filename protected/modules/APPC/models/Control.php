@@ -109,6 +109,9 @@ class Control extends CActiveRecord
 		$criteria->compare('Startdate',$this->Startdate,true);
 		$criteria->compare('Enddate',$this->Enddate,true);
 		$criteria->compare('Frecuency',$this->Frecuency);
+		
+		$criteria->condition = "UserID = :userid";
+		$criteria->params = array(':userid' => Yii::app()->user->ID);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

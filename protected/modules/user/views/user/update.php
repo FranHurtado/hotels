@@ -12,6 +12,6 @@ $this->menu=array(
 );
 ?>
 
-<h1>Modificar Usuario</h1>
+<h1 class="header">Modificar Usuario</h1>
 
 <?php echo $this->renderPartial('_form', array('model'=>$model)); ?>

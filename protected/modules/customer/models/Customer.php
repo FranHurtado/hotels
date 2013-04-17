@@ -98,7 +98,10 @@ class Customer extends CActiveRecord
 		// should not be searched.
 
 		$criteria=new CDbCriteria;
-
+		
+		$criteria->condition = "UserID = :userid";
+		$criteria->params = array(':userid' => Yii::app()->user->ID);
+		
 		$criteria->compare('ID',$this->ID);
 		$criteria->compare('UserID',$this->UserID);
 		$criteria->compare('DNI',$this->DNI,true);
@@ -112,5 +115,33 @@ class Customer extends CActiveRecord
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
+	}
+	
+	public function Top($num)
+	{
+		$criteria = new CDbCriteria();
+		$criteria->condition = "UserID = :userid";
+		$criteria->params = array(':userid' => Yii::app()->user->ID);
+		$criteria->limit = $num;
+		
+		$model = Customer::model()->findAll($criteria);
+		
+		$result = "";
+		
+		$result.= "<table cellpadding='5' cellspacing='0' border='0' style='border-collapse: collapse;'>";
+		
+		$result.= "<tr><td><b>DNI</b></td><td><b>Cliente</b></td><td><b>Telefono</b></td></tr>";
+		
+		foreach ($model as $customer):
+			$result.= "<tr>";
+			$result.= "<td><a href='".Yii::app()->createURL('/customer/customer/update/', array('id'=>$customer->ID))."'>" . Functions::stringCut($customer->DNI, 10) . "</a></td>";
+			$result.= "<td><a href='".Yii::app()->createURL('/customer/customer/update/', array('id'=>$customer->ID))."'>" . Functions::stringCut($customer->FullName, 20) . "</a></td>";
+			$result.= "<td><a href='".Yii::app()->createURL('/customer/customer/update/', array('id'=>$customer->ID))."'>" . Functions::stringCut($customer->Phone, 10) . "</a></td>";
+			$result.= "</tr>";
+		endforeach;
+		
+		$result.= "</table>";
+		
+		return $result;
 	}
 }

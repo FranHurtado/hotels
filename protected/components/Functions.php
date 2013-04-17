@@ -28,5 +28,43 @@ class Functions extends CApplicationComponent
              return true;
          endif;
     }
+    
+    public static function stringCut($string,$size)
+    {
+        if(strlen($string)<$size)
+            return $string;
+        
+        return substr($string,0,strrpos(substr($string,0,$size)," "))."...";
+    }
+    
+    public static function lastReports()
+    {
+    	$result = "";
+	    
+	    $result.= "<table cellpadding='5' cellspacing='0' border='0' style='border-collapse: collapse;'>";
+	    
+	    $result.= "<tr><td>Selecciona el informe que desees imprimir:</td></tr>";
+	    
+	    $result.= "<tr>";
+		$result.= "<td><a href='".Yii::app()->createURL('customer/customer/print/')."'>Listado de Clientes</td>";
+		$result.= "</tr>";
+	    
+	    $result.= "<tr>";
+		$result.= "<td><a href='".Yii::app()->createURL('booking/default/booklist/')."'>Listado de Reservas</td>";
+		$result.= "</tr>";
+	    
+	    $result.= "<tr>";
+		$result.= "<td><a href='".Yii::app()->createURL('invoice/default/invoicelist/')."'>Listado de Facturas</td>";
+		$result.= "</tr>";
+		
+		$result.= "<tr>";
+		$result.= "<td><a href='".Yii::app()->createURL('APPC/default/informe/')."'>Informe APPC</td>";
+		$result.= "</tr>";
+		
+		$result.= "</table>";
+		
+		return $result;
+
+    }
 
 }

@@ -70,10 +70,11 @@ class Mail extends CActiveRecord
 		return array(
 			'ID' => 'ID',
 			'UserID' => 'User',
-			'ListID' => 'Lista',
-			'Name' => 'Nombre',
+			'ListID' => 'Lista de envio',
+			'Name' => 'Nombre del boletin',
 			'Date' => 'Fecha de creacion',
-			'Text' => 'Texto',
+			'Text' => 'Texto del boletin',
+			'LastSent' => 'Fecha &uacute;ltimo envio',
 		);
 	}
 
@@ -94,9 +95,47 @@ class Mail extends CActiveRecord
 		$criteria->compare('Name',$this->Name,true);
 		$criteria->compare('Date',$this->Date,true);
 		$criteria->compare('Text',$this->Text,true);
+		
+		$criteria->condition = "UserID = :userid";
+		$criteria->params = array(':userid' => Yii::app()->user->ID);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
+	}
+	
+	
+	public function Top($num)
+	{
+		$criteria = new CDbCriteria();
+		$criteria->condition = "UserID = :userid";
+		$criteria->params = array(':userid' => Yii::app()->user->ID);
+		$criteria->limit = $num;
+		
+		$model = Mail::model()->findAll($criteria);
+		
+		$result = "";
+		
+		$result.= "<table cellpadding='5' cellspacing='0' border='0' style='border-collapse: collapse;'>";
+		
+		$result.= "<tr><td><b>Fecha</b></td><td><b>Boletin</b></td><td><b>Lista</b></td></tr>";
+				
+		foreach ($model as $customer):
+			$result.= "";
+			$result.= "<tr>";
+			
+			$result.= "<td><a href='".Yii::app()->createURL('/mail/mail/update/', array('id'=>$customer->ID))."'>";
+			$result.= date("d-m-Y" , strtotime($customer->Date)) . "</a></td>";
+			$result.= "<td><a href='".Yii::app()->createURL('/mail/mail/update/', array('id'=>$customer->ID))."'>";
+			$result.= Functions::stringCut($customer->Name, 20) . "</td>";
+			$result.= "<td><a href='".Yii::app()->createURL('/mail/mail/update/', array('id'=>$customer->ID))."'>";
+			$result.= Functions::stringCut($customer->list->Name, 20) . "</td>";
+			
+			$result.= "</tr>";
+		endforeach;
+		
+		$result.= "</table>";
+		
+		return $result;
 	}
 }

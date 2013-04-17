@@ -74,7 +74,7 @@ class MailistController extends Controller
 			$model->attributes=$_POST['Mailist'];
 			$model->UserID = Yii::app()->user->ID;
 			if($model->save())
-				$this->redirect(array('admin'));
+				$this->redirect(array('update','id'=>$model->ID));
 		}
 
 		$this->render('create',array(

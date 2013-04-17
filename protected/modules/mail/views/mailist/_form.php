@@ -4,6 +4,12 @@
 /* @var $form CActiveForm */
 ?>
 
+<?php
+	$criteria = new CDbCriteria();
+	$criteria->condition = "UserID = :userid";
+	$criteria->params = array(':userid' => Yii::app()->user->ID);
+?>
+
 <div class="form">
 
 <?php $form=$this->beginWidget('CActiveForm', array(
@@ -32,7 +38,7 @@
 		
 			<h2>Lista de clientes introducidos:</h2>
 		
-			<?php echo CHTML::dropDownList('newEmail','', CHtml::listData(Customer::model()->findAll(), 'ID', 'Email'), 
+			<?php echo CHTML::dropDownList('newEmail','', CHtml::listData(Customer::model()->findAll($criteria), 'ID', 'Email'), 
 								array('empty'=>'-- Selecciona un cliente para a&ntilde;adirlo a la lista --', 'style' => 'width: 100%;')); ?>
 								
 			<div id="mailist" style="padding: 5px 0;">
@@ -74,7 +80,8 @@
 		                $(".jqueryOk").delay(2500).slideToggle();
 		                $(".jqueryError").delay(2500).slideToggle();
 		            });
-				});		
+				});
+						
 		});
 		
 	<?php endif; ?>

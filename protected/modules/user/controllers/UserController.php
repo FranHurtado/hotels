@@ -37,7 +37,7 @@ class UserController extends Controller
 			),
             
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update','delete','admin'),
+				'actions'=>array('create','update','delete','admin','code'),
 				'users'=>array('@'),
                 'expression'=>$Admin,
 			),
@@ -128,6 +128,11 @@ class UserController extends Controller
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
+	}
+	
+	public function actionCode()
+	{
+		$this->render('code');
 	}
 
 	/**

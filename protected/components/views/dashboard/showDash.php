@@ -1,8 +1,16 @@
-<?php $this->breadcrumbs[] = Yii::t('Dashboard', 'Dashboard'); ?>
+<?php 
+
+$this->pageTitle=Yii::app()->name . ' - Panel de Control';
+$this->breadcrumbs[] = Yii::t('Dashboard', 'Dashboard'); 
+
+?>
+
+<h1 class='header'>Panel de control</h1>
 
 <?php echo $contentBefore; ?>
 
 <?php if ( $showHeader ) { ?>
+	
     <div id="dash-header">
         <span id="dash-controls">
             <a href="#" id="all_open" title="<?php echo Yii::t('Dashboard', 'Open')?>">
