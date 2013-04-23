@@ -37,9 +37,6 @@
 		<div style="width:45%;float:right;">
 		
 			<h2>Lista de clientes introducidos:</h2>
-		
-			<?php echo CHTML::dropDownList('newEmail','', CHtml::listData(Customer::model()->findAll($criteria), 'ID', 'Email'), 
-								array('empty'=>'-- Selecciona un cliente para a&ntilde;adirlo a la lista --', 'style' => 'width: 100%;')); ?>
 								
 			<div id="mailist" style="padding: 5px 0;">
 				<?php echo $this->renderPartial('_emailist', array('model'=>$model)); ?>
@@ -61,9 +58,8 @@
 	
 		$(document).ready(function(){
 				
-				$("#newEmail").bind("change", function(){
-					$("#mailist").css({"opacity" : 0.2});
-					
+			$(".customerEmail").bind("change", function(){
+				if($(this).is(':checked')) {
 					var request = $.ajax({
 		                url: "<?php echo $this->createURL("mailist/addcustomer"); ?>",
 		                type: "POST",
@@ -75,12 +71,58 @@
 		            });
 		
 		            request.done(function(msg) {
-		        		$("#mailist").html(msg);
-		                $("#mailist").css({"opacity" : 1});
-		                $(".jqueryOk").delay(2500).slideToggle();
-		                $(".jqueryError").delay(2500).slideToggle();
 		            });
-				});
+		        }else{
+			        var request = $.ajax({
+			            url: "<?php echo $this->createURL("mailist/deletecustomer"); ?>",
+			            type: "POST",
+			            data: {
+			                newEmail : $(this).val(),
+			                listID : <?php echo $model->ID; ?>, 
+			            },
+			            dataType: "html"
+			        });
+			
+			        request.done(function(msg) {
+			        });
+		        }
+			});
+			
+			$(".customerEmailAll").bind("change", function(){
+				if($(this).is(':checked')) {
+					$(".customerEmail").each(function(){
+						$(this).attr('checked', true);
+						var request = $.ajax({
+			                url: "<?php echo $this->createURL("mailist/addcustomer"); ?>",
+			                type: "POST",
+			                data: {
+			                    newEmail : $(this).val(), 
+			                    listID : <?php echo $model->ID; ?>, 
+			                },
+			                dataType: "html"
+			            });
+			
+			            request.done(function(msg) {
+			            });
+					});
+		        }else{
+			        $(".customerEmail").each(function(){
+						$(this).attr('checked', false);
+						var request = $.ajax({
+				            url: "<?php echo $this->createURL("mailist/deletecustomer"); ?>",
+				            type: "POST",
+				            data: {
+				                newEmail : $(this).val(),
+				                listID : <?php echo $model->ID; ?>, 
+				            },
+				            dataType: "html"
+				        });
+				
+				        request.done(function(msg) {
+				        });
+					});
+		        }
+			});
 						
 		});
 		

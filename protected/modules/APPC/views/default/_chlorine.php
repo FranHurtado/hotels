@@ -1,3 +1,16 @@
+<style>
+table
+{
+	border-collapse: collapse;
+}
+
+table td
+{
+	border: 1px solid #333;
+	padding: 10px;
+}
+</style>
+
 <?php
 	$dias= (strtotime($_POST["start"])-strtotime($_POST["fin"]))/86400;
 	$dias = abs($dias); $dias = floor($dias);

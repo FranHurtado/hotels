@@ -1,36 +1,25 @@
-<?php $modelEmails = CustomerList::model()->findAllByAttributes(array("ListID"=>$model->ID)); ?>
+<?php 
+	$criteria = new CDbCriteria();
+	$criteria->condition = "UserID = :userid";
+	$criteria->params = array(':userid' => Yii::app()->user->ID);
+	
+	$modelCustomers = Customer::model()->findAll($criteria); 
+?>
 
 <ul style="list-style-type:none;padding-left:0.5em;">
+	
+	<li><input type="checkbox" class="customerEmailAll" value="0" /> Seleccionar todos<br /><br /></li>
 
 <?php 
-	foreach($modelEmails as $email):
+	foreach($modelCustomers as $customer):
 	
-	$customer = Customer::model()->findByPK($email->CustomerID);
+	$checked = count(CustomerList::model()->findAllByAttributes(array("ListID"=>$model->ID, "CustomerID"=>$customer->ID))) > 0 ? "checked" : "";
 ?>
 	
-	<li><span class='delete' id='<?php echo $email->ID; ?>'>X</span><?php echo $customer->Email; ?> (<?php echo $customer->FullName; ?>)</li>
+	<li><input type="checkbox" class="customerEmail" <?php echo $checked;?> value="<?php echo $customer->ID; ?>" /> <?php echo $customer->Email; ?> (<?php echo $customer->FullName; ?>)</li>
 
 <?php	
 	endforeach; 
 ?>
 
 </ul>
-
-<script>
-	$(".delete").bind("click", function(){
-		$("#content").css({"opacity" : 0.2});
-		
-		var request = $.ajax({
-            url: "<?php echo $this->createURL("mailist/deletecustomer"); ?>",
-            type: "POST",
-            data: {
-                listID : $(this).attr("id"), 
-            },
-            dataType: "html"
-        });
-
-        request.done(function(msg) {
-            $("#content").css({"opacity" : 1});
-        });
-	});
-</script>

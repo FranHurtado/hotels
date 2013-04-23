@@ -43,6 +43,20 @@ class DefaultController extends Controller
 	        $pdf->WriteHTML($this->renderPartial('_verification', array(), true));
 	        $pdf->Addpage();
 	        $pdf->WriteHTML($this->renderPartial('_verification2', array(), true));
+	        
+	        // Custom controls
+	        $criteria = new CDbCriteria();
+	        $criteria->condition = "UserID = :userid";
+	        $criteria->params = array(':userid' => Yii::app()->user->ID);
+	        
+	        $modelControls = Control::model()->findAll($criteria);
+	        
+	        if(count($modelControls) > 0):
+	        	foreach($modelControls as $control):
+	        		$pdf->Addpage();
+	        		$pdf->WriteHTML($this->renderPartial('_control', array('model'=>$control), true));
+	        	endforeach;
+	        endif;
 	 
 	 
 	        # Outputs ready PDF

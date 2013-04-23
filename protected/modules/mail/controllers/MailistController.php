@@ -200,7 +200,7 @@ class MailistController extends Controller
 	
 	public function actionDeleteCustomer()
 	{
-		$model = CustomerList::model()->findByPK($_POST["listID"]);
+		$model = CustomerList::model()->findByAttributes(array("CustomerID"=>$_POST["newEmail"], "ListID"=>$_POST["listID"]));
 		$modelList = Mailist::model()->findByPK($model->ListID);
 				
 		if($model->delete()):

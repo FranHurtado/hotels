@@ -1,3 +1,16 @@
+<style>
+table
+{
+	border-collapse: collapse;
+}
+
+table td
+{
+	border: 1px solid #333;
+	padding: 10px;
+}
+</style>
+
 <div style='width:100%;'>
 	<table width="100%" cellpadding="10" style="font-size:9pt;">
 		<tr>
